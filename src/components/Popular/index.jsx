@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Splide, SpliedeSlide } from '@splidejs/react-splide';
-import '@splidejs/splide/css/sea-green';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/dist/css/splide.min.css';
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -25,19 +25,31 @@ function Popular() {
     }
   };
   return (
-    <Wrapper>
-      <h3>Popular Recipes</h3>
-      {popular.map((recipe) => {
-        return (
-          <div key={recipe.id}>
-            <Card>
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-            </Card>
-          </div>
-        );
-      })}
-    </Wrapper>
+    <div>
+      <Wrapper>
+        <h3>Popular Recipes</h3>
+        <Splide
+          options={{
+            perPage: 4,
+            pagination: false,
+            drag: 'free',
+            gap: '5rem',
+          }}
+        >
+          {popular.map((recipe) => {
+            return (
+              <SplideSlide key={recipe.id}>
+                <Card>
+                  <p>{recipe.title}</p>
+
+                  <img src={recipe.image} alt={recipe.title} />
+                </Card>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
+      </Wrapper>
+    </div>
   );
 }
 
@@ -48,10 +60,10 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.div`
-  min-height: 25rem;
-  overflow: hidden;
-
+  max-height: 25rem;
   img {
+    width: 25rem;
+    height: 20rem;
     border-radius: 1.5rem;
   }
 `;
