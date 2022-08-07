@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Splide, SpliedeSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/css/sea-green';
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -22,12 +25,33 @@ function Popular() {
     }
   };
   return (
-    <div>
+    <Wrapper>
+      <h3>Popular Recipes</h3>
       {popular.map((recipe) => {
-        return <div key={recipe.id}>{recipe.title}</div>;
+        return (
+          <div key={recipe.id}>
+            <Card>
+              <p>{recipe.title}</p>
+              <img src={recipe.image} alt={recipe.title} />
+            </Card>
+          </div>
+        );
       })}
-    </div>
+    </Wrapper>
   );
 }
 
 export default Popular;
+
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+`;
+
+const Card = styled.div`
+  min-height: 25rem;
+  overflow: hidden;
+
+  img {
+    border-radius: 1.5rem;
+  }
+`;
