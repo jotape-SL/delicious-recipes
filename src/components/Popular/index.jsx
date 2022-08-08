@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/dist/css/splide.min.css';
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -8,19 +11,81 @@ function Popular() {
   }, []);
 
   const getPopular = async () => {
-    const api = await fetch(
-      `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
-    );
-    const data = await api.json();
-    setPopular(data.recipes);
+    const check = localStorage.getItem('popular');
+
+    if (check) {
+      setPopular(JSON.parse(check));
+    } else {
+      const api = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
+      );
+      const data = await api.json();
+      localStorage.setItem('popular', JSON.stringify(data.recipes));
+      setPopular(data.recipes);
+    }
   };
   return (
     <div>
-      {popular.map((recipe) => {
-        return <div key={recipe.id}>{recipe.title}</div>;
-      })}
+      <Wrapper>
+        <h3>Popular Recipes</h3>
+        <Splide
+          options={{
+            perPage: 4,
+            pagination: false,
+            drag: 'free',
+            gap: '5rem',
+          }}
+        >
+          {popular.map((recipe) => {
+            return (
+              <SplideSlide key={recipe.id}>
+                <Card>
+                  <p>{recipe.title}</p>
+                  <img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
+                </Card>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
+      </Wrapper>
     </div>
   );
 }
 
 export default Popular;
+
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+`;
+
+const Card = styled.div`
+  img {
+    border-radius: 1.5rem;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  p {
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    color: white;
+    font-weight: 600;
+    z-index: 6;
+  }
+`;
+
+const Gradient = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+`;
