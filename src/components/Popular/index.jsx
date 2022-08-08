@@ -41,8 +41,8 @@ function Popular() {
               <SplideSlide key={recipe.id}>
                 <Card>
                   <p>{recipe.title}</p>
-
                   <img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
                 </Card>
               </SplideSlide>
             );
@@ -60,10 +60,32 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled.div`
-  max-height: 25rem;
   img {
-    width: 25rem;
-    height: 20rem;
     border-radius: 1.5rem;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
   }
+  p {
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    color: white;
+    font-weight: 600;
+    z-index: 6;
+  }
+`;
+
+const Gradient = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 `;
