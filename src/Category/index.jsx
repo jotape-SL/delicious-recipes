@@ -20,7 +20,7 @@ function Category() {
         <GiNoodles />
         <h4>Thai</h4>
       </NavLink>
-      <NavLink to={'/cuisine/japanese'}>
+      <NavLink to={'/cuisine/greek'}>
         <GiChopsticks />
         <h4>Japanese</h4>
       </NavLink>
