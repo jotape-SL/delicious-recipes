@@ -8,6 +8,10 @@ import React from 'react';
 function Category() {
   return (
     <List>
+      {/* <NavLink to={'/cuisine/japanese'}>
+        <GiChopsticks />
+        <h4>Japanese</h4>
+      </NavLink> */}
       <NavLink to={'/cuisine/italian'}>
         <FaPizzaSlice />
         <h4>Italian</h4>
@@ -20,18 +24,13 @@ function Category() {
         <GiNoodles />
         <h4>Thai</h4>
       </NavLink>
-      <NavLink to={'/cuisine/greek'}>
-        <GiChopsticks />
-        <h4>Japanese</h4>
-      </NavLink>
     </List>
   );
 }
+export default Category;
 
 const List = styled.div`
   display: flex;
   justify-content: center;
   margin: 2rem 0;
 `;
-
-export default Category;
