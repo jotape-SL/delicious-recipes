@@ -1,7 +1,91 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/splide/dist/css/splide.min.css';
 
 function Veggie() {
-  return <div>Veggie</div>;
+  const [veggie, setVeggie] = useState([]);
+
+  useEffect(() => {
+    getVeggie();
+  }, []);
+
+  const getVeggie = async () => {
+    const check = localStorage.getItem('veggie');
+
+    if (check) {
+      setVeggie(JSON.parse(check));
+    } else {
+      const api = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`
+      );
+      const data = await api.json();
+      localStorage.setItem('veggie', JSON.stringify(data.recipes));
+      setVeggie(data.recipes);
+    }
+  };
+  return (
+    <div>
+      <Wrapper>
+        <h3>Veggie Recipes</h3>
+        <Splide
+          options={{
+            perPage: 3,
+            pagination: false,
+            drag: 'free',
+            gap: '5rem',
+          }}
+        >
+          {veggie.map((recipe) => {
+            return (
+              <SplideSlide key={recipe.id}>
+                <Card>
+                  <p>{recipe.title}</p>
+                  <img src={recipe.image} alt={recipe.title} />
+                  <Gradient />
+                </Card>
+              </SplideSlide>
+            );
+          })}
+        </Splide>
+      </Wrapper>
+    </div>
+  );
 }
 
 export default Veggie;
+
+const Wrapper = styled.div`
+  margin: 4rem 0rem;
+`;
+
+const Card = styled.div`
+  img {
+    border-radius: 1.5rem;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+  }
+  p {
+    font-size: 1rem;
+    text-align: center;
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    color: white;
+    font-weight: 600;
+    z-index: 6;
+  }
+`;
+
+const Gradient = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1.5rem;
+  bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
+`;
