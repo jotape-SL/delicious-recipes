@@ -1,5 +1,5 @@
 import Category from './components/Category';
-import Pages from './pages/Pages';
+import Pages from './Pages';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalStyle from './components/GlobalStyle';
 import Search from './components/Search';
