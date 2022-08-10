@@ -1,10 +1,13 @@
-*{
- margin: 0;
- padding:0;
- box-sizing: border-box;
- font-family: 'Montserrat', sans-serif;
-}
+import { createGlobalStyle } from 'styled-components';
 
+const GlobalStyle = createGlobalStyle`
+    * {
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
 body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0 20%;
@@ -23,5 +26,7 @@ h3{
 
 a{
     color: rgb(56,56,56);
-    text-decoration: none;
 }
+`;
+
+export default GlobalStyle;
