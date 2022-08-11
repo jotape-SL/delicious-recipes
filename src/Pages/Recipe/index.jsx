@@ -38,6 +38,19 @@ function Recipe() {
         >
           Ingredients
         </Button>
+        {activeTab === 'instructions' && (
+          <div>
+            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+            <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
+          </div>
+        )}
+        {activeTab === 'ingredients' && (
+          <ul>
+            {details.extendedIngredients.map((ingredient) => {
+              return <li key={ingredient.id}>{ingredient.original}</li>;
+            })}
+          </ul>
+        )}
       </Info>
     </DetailWrapper>
   );
@@ -57,6 +70,7 @@ const DetailWrapper = styled.div`
   li {
     font-size: 1.2rem;
     line-height: 2.5rem;
+    font-weight: bold;
   }
   ul {
     margin-top: 2rem;
@@ -78,10 +92,6 @@ const Button = styled.button`
 `;
 const Info = styled.div`
   margin-left: 10rem;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
 `;
 
 export default Recipe;
