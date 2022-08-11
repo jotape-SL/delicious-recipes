@@ -1,7 +1,7 @@
 import Home from './Home';
 import Cuisine from './Coisine';
 import Searched from './Searched';
-import Recipe from './Recipe/Index';
+import Recipe from './Recipe';
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
