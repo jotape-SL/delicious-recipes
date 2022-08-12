@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
 }
 body{
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin: 0 20%;
+    margin: 0 10%;
 }
 
 h4{
@@ -18,7 +18,7 @@ h4{
     color: rgb(56,56,56);
 }
 h3{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: rgb(56,56,56);
     line-height: 2.5rem;
     margin: 2rem 0;

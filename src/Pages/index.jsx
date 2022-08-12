@@ -1,6 +1,7 @@
 import Home from './Home';
 import Cuisine from './Coisine';
 import Searched from './Searched';
+import Recipe from './Recipe';
 
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
@@ -11,6 +12,7 @@ function Pages() {
       <Route path='/' element={<Home />} />
       <Route path='/cuisine/:type' element={<Cuisine />} />
       <Route path='/searched/:search' element={<Searched />} />
+      <Route path='/recipe/:name' element={<Recipe />} />
     </Routes>
   );
 }
