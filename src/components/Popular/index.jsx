@@ -31,7 +31,7 @@ function Popular() {
         <h3>Popular Recipes</h3>
         <Splide
           options={{
-            perPage: 4,
+            perPage: 3,
             pagination: false,
             drag: 'free',
             gap: '5rem',

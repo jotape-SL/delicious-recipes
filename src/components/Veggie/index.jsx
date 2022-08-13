@@ -31,7 +31,7 @@ function Veggie() {
         <h3>Veggie Recipes</h3>
         <Splide
           options={{
-            perPage: 3,
+            perPage: 4,
             pagination: false,
             drag: 'free',
             gap: '5rem',
@@ -66,14 +66,14 @@ const Card = styled.div`
   img {
     border-radius: 1.5rem;
     max-width: 100%;
-    max-height: 100%;
+    height: 25vh;
     object-fit: cover;
   }
   p {
     font-size: 1rem;
     text-align: center;
     position: absolute;
-    height: 30%;
+    height: 40%;
     width: 100%;
     left: 50%;
     bottom: 0;
