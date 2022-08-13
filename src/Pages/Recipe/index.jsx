@@ -21,26 +21,33 @@ function Recipe() {
 
   return (
     <DetailWrapper>
-      <div>
-        <h2>{details.title}</h2>
-        <img src={details.image} alt={details.title} />
-      </div>
+      <h2>{details.title}</h2>
+      <DivStatic>
+        <div className='summary'>
+          <h1>Summary</h1>
+          <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
+        </div>
+        <div className='name'>
+          {/* <img src={details.image} alt={details.title} /> */}
+        </div>
+      </DivStatic>
       <Info>
-        <Button
-          className={activeTab === 'instructions' && 'active'}
-          onClick={() => setActiveTab('instructions')}
-        >
-          Intructions
-        </Button>
-        <Button
-          className={activeTab === 'ingredients' && 'active'}
-          onClick={() => setActiveTab('ingredients')}
-        >
-          Ingredients
-        </Button>
+        <div className='button-container'>
+          <Button
+            className={activeTab === 'instructions' && 'active'}
+            onClick={() => setActiveTab('instructions')}
+          >
+            Intructions
+          </Button>
+          <Button
+            className={activeTab === 'ingredients' && 'active'}
+            onClick={() => setActiveTab('ingredients')}
+          >
+            Ingredients
+          </Button>
+        </div>
         {activeTab === 'instructions' && (
           <div>
-            <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
             <h3 dangerouslySetInnerHTML={{ __html: details.instructions }}></h3>
           </div>
         )}
@@ -56,16 +63,16 @@ function Recipe() {
   );
 }
 
-const DetailWrapper = styled.div`
-  margin-top: 10rem;
-  margin-bottom: 5rem;
-  display: flex;
+const DetailWrapper = styled.section`
+  margin: 5rem 0;
   .active {
     background: linear-gradient(35deg, #555555, #313131);
     color: white;
   }
   h2 {
-    margin-bottom: 2rem;
+    margin-bottom: 6rem;
+    text-align: center;
+    font-size: 3.5rem;
   }
   li {
     font-size: 1.2rem;
@@ -76,22 +83,42 @@ const DetailWrapper = styled.div`
     margin-top: 2rem;
   }
 `;
+const DivStatic = styled.div`
+  display: flex;
+  flex-direction: row;
+  .name {
+    img {
+      width: 25vw;
+      border-radius: 0.5rem;
+    }
+    .summary {
+      margin-right: 5rem;
+    }
+  }
+`;
 
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 4rem 0;
+  .button-container {
+    text-align: center;
+  }
+`;
 const Button = styled.button`
   padding: 1rem 2rem;
-  color: #313131;
-  background: white;
   border: 2px solid black;
   border-radius: 0.3rem;
   margin-right: 2rem;
   font-weight: 600;
-  .active {
-    color: white;
-    background: #313131;
+  cursor: pointer;
+  &:hover {
+    scale: 1.1;
   }
-`;
-const Info = styled.div`
-  margin-left: 10rem;
+  .active {
+    color: invert;
+    background: invert;
+  }
 `;
 
 export default Recipe;
