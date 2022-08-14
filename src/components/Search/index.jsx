@@ -52,8 +52,7 @@ const FromStyle = styled.form`
   }
   @media (max-width: 800px) {
     input {
-      width: 80%;
-      padding: 1rem 10rem;
+      width: 100%;
     }
   }
 `;
