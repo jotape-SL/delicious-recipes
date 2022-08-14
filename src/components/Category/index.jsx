@@ -62,4 +62,7 @@ const SLink = styled(NavLink)`
   &.active {
     background: linear-gradient(to right, #f27121, #e94057);
   }
+  @media (max-width: 800px) {
+    margin: 0;
+  }
 `;
