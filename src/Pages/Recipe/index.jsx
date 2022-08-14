@@ -27,9 +27,7 @@ function Recipe() {
           <h1>Summary</h1>
           <h3 dangerouslySetInnerHTML={{ __html: details.summary }}></h3>
         </div>
-        <div className='name'>
-          {/* <img src={details.image} alt={details.title} /> */}
-        </div>
+        <div className='name'></div>
       </DivStatic>
       <Info>
         <div className='button-container'>
@@ -82,6 +80,13 @@ const DetailWrapper = styled.section`
   ul {
     margin-top: 2rem;
   }
+  @media (max-width: 800px) {
+    margin: 0;
+    h2 {
+      font-size: 2rem;
+      margin: 4rem 0 3rem 0;
+    }
+  }
 `;
 const DivStatic = styled.div`
   display: flex;
@@ -104,6 +109,9 @@ const Info = styled.div`
   .button-container {
     text-align: center;
   }
+  @media (max-width: 800px) {
+    margin: 0 0.7rem;
+  }
 `;
 const Button = styled.button`
   padding: 1rem 2rem;
@@ -118,6 +126,14 @@ const Button = styled.button`
   .active {
     color: invert;
     background: invert;
+  }
+  @media (max-width: 800px) {
+    font-size: 1.2rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    &:hover {
+      scale: unset;
+    }
   }
 `;
 

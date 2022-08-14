@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import { Link } from 'react-router-dom';
+import { Wrapper, Card, Gradient } from '../GlobalStyle';
 
 function Popular() {
+  const wid = window.innerWidth;
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
@@ -30,12 +32,22 @@ function Popular() {
       <Wrapper>
         <h3>Popular Recipes</h3>
         <Splide
-          options={{
-            perPage: 3,
-            pagination: false,
-            drag: 'free',
-            gap: '5rem',
-          }}
+          options={
+            wid < 800
+              ? {
+                  perPage: 1,
+                  pagination: false,
+                  drag: 'free',
+                  gap: '3rem',
+                  arrows: false,
+                }
+              : {
+                  perPage: 3,
+                  pagination: false,
+                  drag: 'free',
+                  gap: '3rem',
+                }
+          }
         >
           {popular.map((recipe) => {
             return (
@@ -57,38 +69,3 @@ function Popular() {
 }
 
 export default Popular;
-
-const Wrapper = styled.div`
-  margin: 4rem 0rem;
-`;
-
-const Card = styled.div`
-  img {
-    border-radius: 1.5rem;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-  }
-  p {
-    font-size: 1rem;
-    text-align: center;
-    position: absolute;
-    height: 30%;
-    width: 100%;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 0);
-    color: white;
-    font-weight: 600;
-    z-index: 6;
-  }
-`;
-
-const Gradient = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 1.5rem;
-  bottom: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
-`;
