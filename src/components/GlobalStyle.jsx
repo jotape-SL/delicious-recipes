@@ -48,6 +48,11 @@ export default GlobalStyle;
 // Components global styled
 const Wrapper = styled.div`
   margin: 4rem 0rem;
+  @media (max-width: 800px) {
+    h3 {
+      text-align: center;
+    }
+  }
 `;
 
 const Card = styled.div`

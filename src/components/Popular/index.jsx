@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Wrapper, Card, Gradient } from '../GlobalStyle';
 
 function Popular() {
+  const wid = window.innerWidth;
   const [popular, setPopular] = useState([]);
 
   useEffect(() => {
@@ -31,12 +32,22 @@ function Popular() {
       <Wrapper>
         <h3>Popular Recipes</h3>
         <Splide
-          options={{
-            perPage: 3,
-            pagination: false,
-            drag: 'free',
-            gap: '3rem',
-          }}
+          options={
+            wid < 800
+              ? {
+                  perPage: 1,
+                  pagination: false,
+                  drag: 'free',
+                  gap: '3rem',
+                  arrows: false,
+                }
+              : {
+                  perPage: 3,
+                  pagination: false,
+                  drag: 'free',
+                  gap: '3rem',
+                }
+          }
         >
           {popular.map((recipe) => {
             return (

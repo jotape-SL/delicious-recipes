@@ -50,6 +50,12 @@ const FromStyle = styled.form`
     transform: translate(100%, -50%);
     color: white;
   }
+  @media (max-width: 800px) {
+    input {
+      width: 80%;
+      padding: 1rem 10rem;
+    }
+  }
 `;
 
 export default Search;

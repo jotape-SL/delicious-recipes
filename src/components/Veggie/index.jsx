@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Wrapper, Card, Gradient } from '../GlobalStyle';
 
 function Veggie() {
+  const wid = window.innerWidth;
   const [veggie, setVeggie] = useState([]);
 
   useEffect(() => {
@@ -31,23 +32,33 @@ function Veggie() {
       <Wrapper>
         <h3>Veggie Recipes</h3>
         <Splide
-          options={{
-            perPage: 4,
-            pagination: false,
-            drag: 'free',
-            gap: '3rem',
-          }}
+          options={
+            wid < 800
+              ? {
+                  perPage: 1,
+                  pagination: false,
+                  drag: 'free',
+                  gap: '3rem',
+                  arrows: false,
+                }
+              : {
+                  perPage: 4,
+                  pagination: false,
+                  drag: 'free',
+                  gap: '2rem',
+                }
+          }
         >
           {veggie.map((recipe) => {
             return (
               <SplideSlide key={recipe.id}>
-                <CardVG>
+                <Card>
                   <Link to={'/recipe/' + recipe.id}>
                     <p>{recipe.title}</p>
                     <img src={recipe.image} alt={recipe.title} />
                     <Gradient />
                   </Link>
-                </CardVG>
+                </Card>
               </SplideSlide>
             );
           })}
@@ -58,11 +69,3 @@ function Veggie() {
 }
 
 export default Veggie;
-
-const CardVG = styled(Card)`
-  @media (max-width: 800px) {
-    img {
-      height: 25vh;
-    }
-  }
-`;
